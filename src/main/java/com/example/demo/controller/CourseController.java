@@ -49,27 +49,22 @@ public class CourseController {
         return new ResponseEntity(CoursesAfterDeleted, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/post/{inputString}", produces = "application/json")
-    public HttpEntity<Course> postCourse(@PathVariable("inputString") String inputString) {
-
-        List<Course> CoursesAfterAdded = courseService.AddCourse(inputString);
-
-        return new ResponseEntity(CoursesAfterAdded, HttpStatus.OK);
+    @PostMapping(path = "/addCourse", produces = "application/json")
+    public HttpStatus addCourse(@RequestBody Course course) {
+        try {
+            courseService.addCourse(course);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.BAD_REQUEST;
+        }
     }
-
-    @PutMapping(path = "/update/office", produces = "application/json")
-    public HttpEntity<Course> UpdateOffice() {
-
-        List<Course> CoursesAfterUpdated = courseService.UpdateOffice();
-
-        return new ResponseEntity(CoursesAfterUpdated, HttpStatus.OK);
-    }
-
-    @PutMapping(path = "/update/{CourseName}/{OfficeTime}", produces = "application/json")
-    public HttpEntity<Course> ChangeTime(@PathVariable("CourseName") String CourseName, @PathVariable("OfficeTime") String OfficeTime) {
-
-        List<Course> CoursesAfterUpdated = courseService.ChangeTime(CourseName, OfficeTime);
-
-        return new ResponseEntity(CoursesAfterUpdated, HttpStatus.OK);
+    @PutMapping(path = "/updateCourse", produces = "application/json")
+    public HttpStatus updateCourse(@RequestBody Course course) {
+        try {
+            courseService.updateCourse(course);
+            return HttpStatus.OK;
+        } catch (Exception e) {
+            return HttpStatus.BAD_REQUEST;
+        }
     }
 }

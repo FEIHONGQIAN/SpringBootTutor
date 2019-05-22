@@ -63,36 +63,19 @@ public class CourseRepository {
         }
         return courses;
     }
-    public List<Course> AddCourse(String courseName) {
-        for(Course course : courses){
-            if(course.getClassName().equals(courseName)){
-                return courses;
-            }
-        }
-        Course course = Course.builder()
-                .className(courseName)
-                .instructor(new Instructor("Qin", "Wang", "Phd", "TownHall203"))
-                .startDate(new Date("8/1/2019"))
-                .endDate(new Date("12/24/2019"))
-                .timeFrame("8pm-12pm")
-                .build();
-
+    public List<Course> AddCourse(Course course) {
         courses.add(course);
         return courses;
     }
-    public List<Course> UpdateOffice(){
+    public List<Course> updateCourse(Course new_course) {
         for(Course course : courses){
-            course.getInstructor().setOffice("Building-1 Office-307");
-        }
-        return courses;
-    }
-    public List<Course> ChangeTime(String CourseName, String OfficeTime){
-        for(Course course : courses){
-            if(course.getClassName().equals(CourseName)){
-                course.setTimeFrame(OfficeTime);
+            if(course.getClassName().equals(new_course.getClassName())){
+                courses.remove(course);
+                courses.add(new_course);
                 break;
             }
         }
         return courses;
     }
+
 }

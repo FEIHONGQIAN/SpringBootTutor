@@ -29,17 +29,10 @@ public class CourseService {
 
         return courseRepository.DeleteCourseByName(input);
     }
-    public List<Course> AddCourse(String input){
-
-        return courseRepository.AddCourse(input);
+    public List<Course> addCourse(Course course){
+        return courseRepository.AddCourse(course);
     }
-    public List<Course> UpdateOffice(){
-
-        return courseRepository.UpdateOffice();
+    public List<Course> updateCourse(Course course){
+        return courseRepository.updateCourse(course);
     }
-    public List<Course> ChangeTime(String CourseName, String OfficeTime){
-
-        return courseRepository.ChangeTime(CourseName, OfficeTime);
-    }
-
 }
